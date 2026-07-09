@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "7b11cd9b-c53f-46a7-a344-b76dfdfd4ea9",
+    "name": "Employee Management System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46944687",
+    "_collection_link": "https://go.postman.co/collection/46944687-7b11cd9b-c53f-46a7-a344-b76dfdfd4ea9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "ALL DATA",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "QUERY PARAMETER",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees?page=1&limit=3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET BY ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees/6a4f6fe9af7c68fa8d5a9eb4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "6a4f6fe9af7c68fa8d5a9eb4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE USER",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employeeId\": \"EMP001\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"gender\": \"Male\",\r\n  \"dateOfBirth\": \"1990-01-01T00:00:00.000Z\",\r\n  \"department\": \"Engineering\",\r\n  \"designation\": \"Software Engineer\",\r\n  \"joiningDate\": \"2026-07-10T00:00:00.000Z\",\r\n  \"salary\": 60000,\r\n  \"address\": \"123 Main St\",\r\n  \"status\": \"Active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees/6a4f9357c650bf76d3267de3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "6a4f9357c650bf76d3267de3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UPDATE USER",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"salary\": 75000,\r\n  \"designation\": \"Senior Software Engineer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees/6a4f9357c650bf76d3267de3?ID=6a4f9357c650bf76d3267de3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "6a4f9357c650bf76d3267de3"
+          ],
+          "query": [
+            {
+              "key": "ID",
+              "value": "6a4f9357c650bf76d3267de3",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employeeId\": \"EMP01\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"gender\": \"Male\",\r\n  \"dateOfBirth\": \"1990-01-01T00:00:00.000Z\",\r\n  \"department\": \"Engineering\",\r\n  \"designation\": \"Software Engineer\",\r\n  \"joiningDate\": \"2026-07-10T00:00:00.000Z\",\r\n  \"salary\": 60000,\r\n  \"address\": \"123 Main St\",\r\n  \"status\": \"Active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/v1/employees/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
