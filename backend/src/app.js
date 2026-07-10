@@ -17,6 +17,12 @@ const app = express();
 app.set("trust proxy", 1);
 
 /* =====================================================
+   Security (Helmet first as requested)
+===================================================== */
+
+app.use(helmet());
+
+/* =====================================================
    CORS Configuration
 ===================================================== */
 
@@ -42,29 +48,35 @@ const corsOptions = {
 
     return callback(new Error("CORS Not Allowed"));
   },
-
   credentials: true,
-
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Accept",
-  ],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
 };
 
 // Apply CORS BEFORE routes
 app.use(cors(corsOptions));
 
-// Handle preflight requests
-app.options("*", cors(corsOptions));
+// Handle preflight requests (Fixed for Express 5.x)
+app.options(/(.*)/, cors(corsOptions));
 
 /* =====================================================
-   Security
+   Body Parser
 ===================================================== */
 
-app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* =====================================================
+   Compression
+===================================================== */
+
+app.use(compression());
+
+/* =====================================================
+   Cookie Parser
+===================================================== */
+
+app.use(cookieParser());
 
 /* =====================================================
    Rate Limiter
@@ -74,20 +86,7 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-
 app.use("/api", limiter);
-
-/* =====================================================
-   Body Parser
-===================================================== */
-
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use(cookieParser());
-
-app.use(compression());
 
 /* =====================================================
    Logger
@@ -119,7 +118,6 @@ app.use("/api/v1", routes);
 ===================================================== */
 
 app.use(notFound);
-
 app.use(errorHandler);
 
 module.exports = app;
