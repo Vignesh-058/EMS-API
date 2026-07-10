@@ -53,7 +53,7 @@ export function ErrorState({ type, title, message, onRetry, className }: ErrorSt
   }
 
   return (
-    <div className={cn("flex flex-col items-center justify-center p-12 text-center border rounded-xl bg-card shadow-sm", className)}>
+    <div className={cn("flex flex-col items-center justify-center w-full p-12 text-center border rounded-xl bg-card shadow-sm", className)}>
       <div className="rounded-full bg-muted/50 p-4 mb-4">
         <Icon className={cn("h-8 w-8", iconClass)} />
       </div>
