@@ -14,34 +14,15 @@ const app = express();
 // Trust reverse proxy (required for Render & express-rate-limit)
 app.set('trust proxy', 1);
 
-// Define allowed origins securely
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://ems-api-five.vercel.app'
-];
-
-if (process.env.FRONTEND_URL && !allowedOrigins.includes(process.env.FRONTEND_URL)) {
-  allowedOrigins.push(process.env.FRONTEND_URL);
-}
-
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman or curl)
-    if (!origin) return callback(null, true);
-
-    if (process.env.NODE_ENV === 'development' && origin === '*') {
-      return callback(null, true);
-    }
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: [
+    'http://localhost:5173',
+    'https://ems-api-five.vercel.app',
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
 };
 
 // Security Middlewares
