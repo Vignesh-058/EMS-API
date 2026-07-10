@@ -11,6 +11,9 @@ const { errorHandler, notFound } = require('./middlewares/errorHandler');
 
 const app = express();
 
+// Trust reverse proxy (required for Render & express-rate-limit)
+app.set('trust proxy', 1);
+
 // Define allowed origins securely
 const allowedOrigins = [
   'http://localhost:5173',
